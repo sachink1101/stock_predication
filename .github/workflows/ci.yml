@@ -25,11 +25,18 @@ jobs:
     - name: Build
       run: npm run build
 
+    - name: Verify Build Directory
+      run: |
+        if [ ! -d "build" ]; then 
+          echo "Build directory not found!"; 
+          exit 1; 
+        fi
+
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build
-        path: build
+        path: ./build
 
   deploy:
     runs-on: ubuntu-latest
