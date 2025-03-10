@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Vite + React CI
 
 on: [push, pull_request]
 
@@ -18,5 +18,8 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Run Build
+      run: npm run build
+
     - name: Run Tests
-      run: npm test  # Or your test command
+      run: npm test  # If you have tests, otherwise remove this step
