@@ -1,35 +1,51 @@
 name: CI Workflow
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Build
-        run: npm run build
+    - name: Build
+      run: npm run build
 
-  report_status:
-    runs-on: ubuntu-latest
-    needs: build  # Depends on build job
-    steps:
-      - name: Report Build Status
-        run: echo "Build completed successfully."
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build
+        path: build
 
   deploy:
     runs-on: ubuntu-latest
-    needs: report_status  # Depends on report_status job
+    needs: build
+
     steps:
-      - name: Deploy Application
-        run: echo "Deploying the application..."
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Download Build Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
