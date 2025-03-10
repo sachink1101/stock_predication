@@ -313,17 +313,7 @@ const StockNews = () => {
       <header className="p-6 flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
         <h1 className="text-3xl font-bold">📈Stock Prediction Dashboard</h1>
         <div className="flex items-center gap-4">
-          <div className="flex gap-2">
-            {["1D", "5D", "1M"].map((tf) => (
-              <button
-                key={tf}
-                onClick={() => setTimeFrame(tf)}
-                className={`px-3 py-1 rounded-lg ${timeFrame === tf ? "bg-blue-600 text-white" : darkMode ? "bg-gray-700 text-white hover:bg-gray-600" : "bg-gray-200 text-gray-900 hover:bg-gray-300"} transition`}
-              >
-                {tf}
-              </button>
-            ))}
-          </div>
+          
           
         </div>
       </header>
@@ -407,51 +397,10 @@ const StockNews = () => {
                 <h3 className="text-lg font-semibold mb-2">Price Prediction</h3>
                 <Chart type="line" data={getLineChartData(stock)} options={getLineChartOptions(stock)} />
               </div>
+              
 
-              {/* Chart 2: Area Chart (Price Trend Analysis) */}
-              <div className="w-full mb-6" style={{ height: "300px" }}>
-                <h3 className="text-lg font-semibold mb-2">Price Trend (30 Days)</h3>
-                <ResponsiveContainer>
-                  <AreaChart data={getAreaChartData(stock)}>
-                    <XAxis dataKey="date" tickFormatter={(date) => date.toLocaleDateString("en-US", { month: "short", day: "numeric" })} stroke={darkMode ? "#fff" : "#8884d8"} />
-                    <YAxis stroke={darkMode ? "#fff" : "#8884d8"} />
-                    <Tooltip formatter={(value) => `₹${value.toFixed(2)}`} contentStyle={{ backgroundColor: darkMode ? "#333" : "#fff", borderRadius: "4px", color: darkMode ? "#fff" : "#000" }} />
-                    <Legend />
-                    <Area type="monotone" dataKey="price" stroke="#007bff" fill="rgba(0, 123, 255, 0.3)" />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
 
-              {/* Chart 3: Bar Chart (Price Ranges) */}
-              <div className="w-full mb-6" style={{ height: "300px" }}>
-                <h3 className="text-lg font-semibold mb-2">Price Ranges</h3>
-                <ResponsiveContainer>
-                  <BarChart data={getBarChartData(stock)}>
-                    <XAxis dataKey="name" stroke={darkMode ? "#fff" : "#8884d8"} />
-                    <YAxis stroke={darkMode ? "#fff" : "#8884d8"} />
-                    <Tooltip formatter={(value) => `₹${value.toFixed(2)}`} contentStyle={{ backgroundColor: darkMode ? "#333" : "#fff", borderRadius: "4px", color: darkMode ? "#fff" : "#000" }} />
-                    <Legend />
-                    <Bar dataKey="min" stackId="a" fill={darkMode ? "#4CAF50" : "#007bff"} />
-                    <Bar dataKey="max" stackId="a" fill={darkMode ? "#81C784" : "#00CED1"} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-
-              {/* Chart 4: Pie Chart (Signal Distribution) */}
-              <div className="w-full mb-6" style={{ height: "300px" }}>
-                <h3 className="text-lg font-semibold mb-2">Signal Distribution</h3>
-                <ResponsiveContainer>
-                  <PieChart>
-                    <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label>
-                      {pieData.map((entry, idx) => (
-                        <Cell key={`cell-${idx}`} fill={COLORS[idx % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Tooltip contentStyle={{ backgroundColor: darkMode ? "#333" : "#fff", borderRadius: "4px", color: darkMode ? "#fff" : "#000" }} />
-                    <Legend />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
+              
 
               
             </div>

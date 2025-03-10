@@ -106,20 +106,19 @@ const About = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-blue-800 text-white py-6 px-6 text-center mt-5 rounded">
-        <p className="text-sm">© 2025 Stock Prediction App. All rights reserved.</p>
-        <div className="mt-2 flex justify-center gap-4">
-          <Link to="/" className="text-blue-400 hover:text-blue-300">
-            Home
-          </Link>
-          <Link to="/about" className="text-blue-400 hover:text-blue-300">
-            About
-          </Link>
-          <Link to="/privacy" className="text-blue-400 hover:text-blue-300">
-            Privacy Policy
-          </Link>
-        </div>
-      </footer>
+            <footer className="mt-12 bg-gray-800 text-white py-6 px-6 text-center rounded-t-lg">
+              <p className="text-sm">© 2025 Stock Prediction App. All rights reserved.</p>
+              <div className="mt-2 flex justify-center gap-4">
+                <Link to="/" className="text-blue-400 hover:text-blue-300">
+                  Home
+                </Link>
+                <Link to="/about" className="text-blue-400 hover:text-blue-300">
+                  About
+                </Link>
+                <Link to="/policy" className="text-blue-400 hover:text-blue-300">Privacy Policy</Link>
+                
+              </div>
+            </footer>
     </div>
   );
 };

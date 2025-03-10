@@ -182,9 +182,8 @@ const Privacy = () => {
           <Link to="/about" className="text-blue-400 hover:text-blue-300">
             About
           </Link>
-          <Link to="/privacy" className="text-blue-400 hover:text-blue-300">
-            Privacy Policy
-          </Link>
+          <Link to="/policy" className="text-blue-400 hover:text-blue-300">Privacy Policy</Link>
+          
         </div>
       </footer>
     </div>
