@@ -39,6 +39,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
 
+    permissions:
+      contents: write  # Allow push to gh-pages branch
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
