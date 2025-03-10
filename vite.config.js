@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: "/stock_predication/", // ✅ Set correct base path
   plugins: [react()],
-});
+  base: '/stock_predication/', // Important for GitHub Pages
+})
